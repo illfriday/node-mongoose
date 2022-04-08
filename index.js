@@ -12,14 +12,19 @@ const connect = mongoose.connect(url, {
 //connect METHOD returns PROMISE(built-in NODE functionality)
 connect.then(() => {
   console.log("Connected correctly to the server.");
-  //instantiate a NEW DOCUMENT using the 'Campsite' MODEL
-  const newCampsite = new Campsite({
+  //instantiate a NEW DOCUMENT using the 'Campsite' MODEL using the 'create()' METHOD returning a PROMISE to create a NEW DOCUMENT
+  Campsite.create({
     name: "React Lake Campground",
-    description: "moist",
-  });
-  //use mongoose.save() METHOD to save DOCUMENT to DB and return a PROMISE indicating success/failure
-  newCampsite
-    .save()
+    description: "Still moist.",
+  })
+    //****BELOW Code uses the 'New' KEYWORD to instantiate an instance of the 'Campsite' MODEL(create a NEW DOCUMENT). Requires 'mongoose.save()' METHOD to save to DB. UPDATED ABOVE */
+    // const newCampsite = new Campsite({
+    //   name: "React Lake Campground",
+    //   description: "moist",
+    // });
+    // //use mongoose.save() METHOD to save DOCUMENT to DB and return a PROMISE indicating success/failure
+    // newCampsite
+    //   .save()
     .then((campsite) => {
       //log the NEW DOCUMENT added
       console.log(campsite);
