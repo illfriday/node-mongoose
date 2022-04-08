@@ -2,6 +2,28 @@
 const mongoose = require("mongoose");
 //create a shorthand for 'mongoose.Schema
 const Schema = mongoose.Schema;
+//Create a new SCHEMA for 'comments' SUB-DOCUMENTS
+const commentSchema = new Schema(
+  {
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 //create a new MONGOOSE SCHEMA
 const campsiteSchema = new Schema(
   {
@@ -14,6 +36,8 @@ const campsiteSchema = new Schema(
       type: String,
       required: true,
     },
+    //cause EVERY 'Campsite' DOCUMENTS to contain the multiple instances of the 'commentSchema' stored in an ARRAY. We can now have more than one comment
+    comments: [commentSchema],
   },
   //CONFIGS(optional)
   {
